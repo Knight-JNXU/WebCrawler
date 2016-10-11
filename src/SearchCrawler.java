@@ -1,9 +1,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,7 +44,7 @@ public class SearchCrawler implements Runnable {
     @Override
     public void run() {
         //启动搜索线程
-
+        crawl(startUrl, maxUrl, searchString, limitHost, caseSensitive);
     }
 
     //检测URL格式
@@ -236,5 +234,87 @@ public class SearchCrawler implements Runnable {
             }
         }
         return true;
+    }
+
+    //执行世界的搜索操作
+    public ArrayList<String> crawl(String startUrl, int maxUrls,
+                                   String searchString, boolean limithost, boolean caseSensitive){
+        System.out.println("searchString=" + searchString);
+        HashSet<String> crawledList = new HashSet<String>();
+        LinkedHashSet<String> toCrawList = new LinkedHashSet<>();
+
+        if(maxUrls < 1){
+            errorList.add("Invalid Max URLs value.");
+            System.out.println("Invalid Max URLs value.");
+        }
+
+        if(searchString.length() < 1){
+            errorList.add("Missing Search String.");
+            System.out.println("Missing search String.");
+        }
+
+        if(errorList.size() > 0){
+            System.out.println("err!!!");
+            return errorList;
+        }
+
+        // 从开始URL中移出www
+        startUrl = removeWwwFromUrl(startUrl);
+
+        toCrawList.add(startUrl);
+        while (toCrawList.size() > 0){
+            if(maxUrls != -1){
+                if(crawledList.size() == maxUrls){
+                    break;
+                }
+            }
+
+            // Get URL at bottom of the list
+            String url = toCrawList.iterator().next();
+
+            // Remove URL from the crawl list.
+            toCrawList.remove(url);
+
+            // Convert string url to URL object
+            URL verifiedUrl = verifyUrl(url);
+
+            // Skip URL if robots are not allowed to access it.
+            if(!isRobotAllowed(verifiedUrl)){
+                continue;
+            }
+
+            // 增加已处理的URL到crawledList
+            crawledList.add(url);
+            String pageContents = downloadPage(verifiedUrl);
+
+            if(pageContents!=null && pageContents.length()>0){
+                // 从页面中获取有效的链接
+                ArrayList<String> links = retrieveLinks(
+                        verifiedUrl, pageContents, crawledList, limitHost);
+                toCrawList.addAll(links);
+
+                if(searchStringMatches(pageContents, searchString, caseSensitive)){
+                    result.add(url);
+                    System.out.println(url);
+                }
+            }
+        }
+        return result;
+    }
+
+    //主函数
+    public static void main(String[] args){
+        String inputStr = new Scanner(System.in).nextLine();
+        String strs[] = inputStr.split(" ");
+        if(strs.length != 3){
+            System.out.println("Usage:java SearchCrawler startUrl maxUrl searchString");
+            return;
+        }
+        int max = Integer.parseInt(strs[1]);
+        SearchCrawler crawler = new SearchCrawler(strs[0], max, strs[2]);
+        Thread search = new Thread(crawler);
+        System.out.println("Start searching...");
+        System.out.println("result:");
+        search.start();
     }
 }
