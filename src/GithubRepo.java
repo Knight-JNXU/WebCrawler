@@ -1,7 +1,11 @@
+import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.model.ConsolePageModelPipeline;
+import us.codecraft.webmagic.model.OOSpider;
 import us.codecraft.webmagic.model.annotation.ExtractBy;
 import us.codecraft.webmagic.model.annotation.ExtractByUrl;
 import us.codecraft.webmagic.model.annotation.HelpUrl;
 import us.codecraft.webmagic.model.annotation.TargetUrl;
+import us.codecraft.webmagic.pipeline.ConsolePipeline;
 
 /**
  * Created by Knight_JXNU on 2016/10/13.
@@ -19,4 +23,12 @@ public class GithubRepo {
     @ExtractBy("div[@id='readme']/tidyText()")
     private String readme;
 
+    public static void main(String[] args){
+        OOSpider.create(Site.me().setSleepTime(1000),
+                new ConsolePageModelPipeline(), GithubRepo.class)
+                .addUrl("https://github.com/code4craft")
+                .addPipeline(new ConsolePipeline())
+                .thread(5)
+                .run();
+    }
 }
