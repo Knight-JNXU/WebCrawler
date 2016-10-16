@@ -15,47 +15,45 @@ public class CsdnBlogPageProcessor implements PageProcessor {
     //抓取网站的相关配置，包括：编码、抓取间隔、重试次数等
     private Site site = Site.me().setRetryTimes(3).setSleepTime(1000);
 
+    private String tempStr;
+
     @Override
     //process是定制爬虫逻辑的核心接口，在这里便也抽取逻辑
     public void process(Page page) {
-        Object o1 = page.getHtml().xpath("//div[@id='skin_list']").links();
-        Object o2 = page.getHtml().xpath("//div[@id='skin_list']");
-        Object o3 = page.getHtml();
-        System.out.println(o3);
+        System.out.println(page.getUrl());
         //列表页
         if(!page.getUrl().regex("http://blog\\.csdn\\.net/" + username + "/article/details/\\d+").match()){
             //添加所有文章页
             page.addTargetRequests(page.getHtml()
-                    .xpath("//div[@id='skin_list']").links()  //限定文章获取区域
-                    .regex("/"+username+"/article/details/\\d")
-                    .replace("/"+username+"/", "http://blog.csdn.net/"+username+"/")  //巧用替换给把相对url转换成绝对url
-                    .all());  //添加其他列表页
-            page.addTargetRequests(page.getHtml().xpath("//div[@id='pagelils']").links()  //限定其他页面获取区域
-                    .regex("/"+username+"/article/list/\\d")
-                    .replace("/"+username+"/", "http://blog.csdn.net/"+username+"/")  //巧用替换给把相对url转换成绝对url
+                    .xpath("//h3[@class='list_c_t']").links()  //限定文章获取区域
                     .all());
             //文章页
         }else{
+            if(page.getUrl().regex("http://blog\\.csdn\\.net/qq598535550/article/details/51278225").match()){
+                boolean flag = true;
+            }
             size++;  //文章数量加1
             //用csdn blog类来存抓取到的数据，方便存入数据库
             CsdnBlog csdnBlog = new CsdnBlog();
             //设置编号
             csdnBlog.setId(Integer.parseInt(page.getUrl().regex("http://blog\\.csdn\\.net/"+username+"/article/details/(\\d+)").get()));
             //设置标题
-//            csdnBlog.setTitle(page.getHtml().xpath("//div[@class='article_title']//span[@class='link_title']/a/text()").get());
             csdnBlog.setTitle(page.getHtml().xpath("//h3[@class='list_c_t']/a/text()").get());
             //设置日期
-            csdnBlog.setDate(page.getHtml().xpath("//div[@class='article_r']/span[@class='link_postdate']/text()").get());
-            //设置标签
-            csdnBlog.setTags(listToString(page.getHtml().xpath("//div[@class='article_l']/span[@class='link_categories']/a/allText()").all()));
+            csdnBlog.setDate(page.getHtml().xpath("//div[@class='date_t']/span/text()").get()+
+                            page.getHtml().xpath("//div[@class='date_t']/em/text()").get()+
+                    page.getHtml().xpath("//div[@class='date_b']/text()").get());
             //设置类别(可以有多个，用 "," 来分割)
-            csdnBlog.setCategory(listToString(page.getHtml().xpath("//div[@class='category_r']/label/span/text()").all()));
+            csdnBlog.setCategory(listToString(page.getHtml().xpath("//p[@class='detail_p']/label//em/text()").all()));
             //设置阅读人数
-            csdnBlog.setView(Integer.parseInt(page.getHtml().xpath("//div[@class='article_r']/span[class='link_view']").regex("\\((\\d+)\\)").get()));
+            List<String> readList = page.getHtml().xpath("//p[@class='read_r']/label/span/allText()").all();
+            tempStr = readList.get(0);
+            csdnBlog.setView(Integer.parseInt(tempStr.substring(1, tempStr.length()-1)));
             //设置评论人数
-            csdnBlog.setComments(Integer.parseInt(page.getHtml().xpath("//div[@class='article_r']/span[@class='link_comments']").regex("\\((\\d+)\\)").get()));
+            tempStr = readList.get(1);
+            csdnBlog.setComments(Integer.parseInt(tempStr.substring(1, tempStr.length()-1)));
             //设置是否原创
-            csdnBlog.setCopyright(page.getHtml().regex("bog_copyright").match()?1:0);
+            csdnBlog.setCopyright(page.getHtml().xpath("//a[@class='set_old']/text()").get()==null?0:1);
             System.out.println(csdnBlog);
         }
     }

@@ -5,7 +5,6 @@ public class CsdnBlog {
     private int id;  //编号
     private String title;  //标题
     private String date;  //日期
-    private String tags;  //标签
     private String category;  //分类
     private int view;  //阅读人数
     private int comments;  //评论人数
@@ -33,14 +32,6 @@ public class CsdnBlog {
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public String getTags() {
-        return tags;
-    }
-
-    public void setTags(String tags) {
-        this.tags = tags;
     }
 
     public String getCategory() {
@@ -81,7 +72,6 @@ public class CsdnBlog {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", date='" + date + '\'' +
-                ", tags='" + tags + '\'' +
                 ", category='" + category + '\'' +
                 ", view=" + view +
                 ", comments=" + comments +
