@@ -20,7 +20,6 @@ public class CsdnBlogPageProcessor implements PageProcessor {
     @Override
     //process是定制爬虫逻辑的核心接口，在这里便也抽取逻辑
     public void process(Page page) {
-        System.out.println(page.getUrl());
         //列表页
         if(!page.getUrl().regex("http://blog\\.csdn\\.net/" + username + "/article/details/\\d+").match()){
             //添加所有文章页
@@ -29,9 +28,6 @@ public class CsdnBlogPageProcessor implements PageProcessor {
                     .all());
             //文章页
         }else{
-            if(page.getUrl().regex("http://blog\\.csdn\\.net/qq598535550/article/details/51278225").match()){
-                boolean flag = true;
-            }
             size++;  //文章数量加1
             //用csdn blog类来存抓取到的数据，方便存入数据库
             CsdnBlog csdnBlog = new CsdnBlog();
