@@ -18,7 +18,7 @@ public class JokerPageProcesser implements PageProcessor{
             .addHeader("Accept-Encoding", "gzip, deflate, sdch")
             .addHeader("Accept-Language", "zh-CN,zh;q=0.8")
             .addHeader("Cache-Control", "max-age=0")
-            .addHeader("Connection", "keep-alive");;
+            .addHeader("Connection", "keep-alive");
 
     @Override
     public void process(Page page) {
