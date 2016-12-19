@@ -19,4 +19,13 @@
         <property name="suffix" value=".html"/>
     </bean>
 
+    <!-- 使用注解注入properties中的值 -->
+    <bean id="mysettings" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath:mysettings.properties</value>
+            </list>
+        </property>
+    </bean>
+
 </beans>
