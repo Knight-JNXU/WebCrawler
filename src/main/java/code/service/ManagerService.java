@@ -1,7 +1,9 @@
 package code.service;
 
+import code.dao.ManagerDao;
 import code.utils.BtTianTangPageProcesser;
 import code.utils.MySpider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,7 +12,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class ManagerService extends BaseService{
 
-    private MySpider mySpider = MySpider.create(new BtTianTangPageProcesser());
+    @Autowired
+    ManagerDao managerDao;
+
+    /*private MySpider mySpider = MySpider.create(new BtTianTangPageProcesser(managerDao));
 
     public void input(){
         mySpider.addUrl(BT_URL).thread(THREAD_NUM).run();
@@ -19,5 +24,5 @@ public class ManagerService extends BaseService{
     public boolean isRunning(){
         return mySpider.ifRunning();
 //        return true;
-    }
+    }*/
 }

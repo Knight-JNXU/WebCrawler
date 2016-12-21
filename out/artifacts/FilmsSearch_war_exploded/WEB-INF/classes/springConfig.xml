@@ -8,7 +8,7 @@
 
     <mvc:annotation-driven/>
 
-    <context:component-scan base-package="code"/>
+    <context:component-scan base-package="code.*"/>
 
     <mvc:resources mapping="/images/**" location="/images/" />
     <mvc:resources mapping="/css/**" location="/css/" />
@@ -17,6 +17,15 @@
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/view/"/>
         <property name="suffix" value=".html"/>
+    </bean>
+
+    <!-- 使用注解注入properties中的值 -->
+    <bean id="mysettings" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath:mysettings.properties</value>
+            </list>
+        </property>
     </bean>
 
 </beans>
