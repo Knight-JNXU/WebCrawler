@@ -18,15 +18,15 @@ public class ManagerController {
 
     @RequestMapping(value = "/input")
     public String input(){
-//        managerService.input();
+        managerService.input();
         return "manager";
     }
 
     @ResponseBody
     @RequestMapping(value = "/isRunning")
     public String isRunning(){
-//        return (""+managerService.isRunning());
-        return "";
+        return (""+managerService.isRunning());
+//        return "";
     }
 
 }
