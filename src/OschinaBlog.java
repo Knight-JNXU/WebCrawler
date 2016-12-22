@@ -4,6 +4,7 @@ import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.model.AfterExtractor;
 import us.codecraft.webmagic.model.OOSpider;
 import us.codecraft.webmagic.model.annotation.ExtractBy;
+import us.codecraft.webmagic.model.annotation.ExtractByUrl;
 import us.codecraft.webmagic.model.annotation.TargetUrl;
 
 import java.util.List;
@@ -27,12 +28,16 @@ public class OschinaBlog implements AfterExtractor {
     @ExtractBy(value = "//div[@class='BlogTags']/a/text()", multi = true)
     private List<String> tags;
 
+    @ExtractByUrl
+    private String url;
+
     @Override
     public void afterProcess(Page page) {
         //jfinal的属性其实是一个Map而不是字段，没关系，填充进去就是了
         System.out.println(title);
         System.out.println(content);
         System.out.println(StringUtils.join(tags, ","));
+        System.out.println(url);
         //保存
     }
     public static void main(String[] args) {
