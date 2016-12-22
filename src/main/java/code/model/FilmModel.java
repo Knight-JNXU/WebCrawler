@@ -1,19 +1,10 @@
 package code.model;
 
-import us.codecraft.webmagic.Page;
-import us.codecraft.webmagic.model.AfterExtractor;
-import us.codecraft.webmagic.model.annotation.ExtractBy;
-import us.codecraft.webmagic.model.annotation.ExtractByUrl;
-import us.codecraft.webmagic.model.annotation.TargetUrl;
-
 /**
  * Created by Knight_JXNU on 2016/11/25.
  */
-@TargetUrl("http://www\\.bttt99\\.com/v/\\d+")
-public class FilmModel implements AfterExtractor{
-    @ExtractBy("//div[@class=\"moviedteail_tt\"]/h1/text()")
+public class FilmModel extends BaseModel{
     private String name;
-    @ExtractByUrl
     private String url;
 
     public FilmModel() {
@@ -40,7 +31,4 @@ public class FilmModel implements AfterExtractor{
         this.url = url;
     }
 
-    public void afterProcess(Page page) {
-
-    }
 }
