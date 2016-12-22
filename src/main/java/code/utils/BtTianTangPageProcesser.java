@@ -1,6 +1,9 @@
 package code.utils;
 
 import code.dao.ManagerDao;
+import code.model.FilmModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;
@@ -32,6 +35,11 @@ public class BtTianTangPageProcesser implements PageProcessor {
         List<String> links = page.getHtml().links().regex("http://www\\.bttt99\\.com/v/\\d+").all();
         page.addTargetRequests(links);
         page.putField("name",page.getHtml().xpath("//div[@class=\"moviedteail_tt\"]/h1/text()"));
+        String url = page.getUrl().toString();
+        String name = page.getHtml().xpath("//div[@class=\"moviedteail_tt\"]/h1/text()").toString();
+        if(name!=null && url!=null){
+            managerDao.insertFilm(new FilmModel(name,url));
+        }
         if (page.getResultItems().get("name")==null){
             page.setSkip(true);
         }

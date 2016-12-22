@@ -36,7 +36,7 @@ public class BaseDao {
      * @param key
      * @param value
      */
-    protected void set(String key, Object value){
+    protected void set(String key, String value){
         redisTemplate.boundValueOps(key).set(value);
     }
 

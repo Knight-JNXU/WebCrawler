@@ -13,16 +13,26 @@ import org.springframework.stereotype.Service;
 public class ManagerService extends BaseService{
 
     @Autowired
-    ManagerDao managerDao;
+    private ManagerDao managerDao;
+    @Autowired
+    private MySpider mySpider;
 
-    private MySpider mySpider = MySpider.create(new BtTianTangPageProcesser(managerDao));
+//    private MySpider mySpider = MySpider.create(btTianTangPageProcesser);
 
     public void input(){
+//        if(!isRunning()){
+//            mySpider = MySpider.create(new BtTianTangPageProcesser(managerDao));
+//            mySpider.addUrl(BT_URL).thread(THREAD_NUM).run();
+//        }
         mySpider.addUrl(BT_URL).thread(THREAD_NUM).run();
     }
 
     public boolean isRunning(){
-        return mySpider.ifRunning();
+        if(mySpider==null){
+            return false;
+        }else{
+            return mySpider.ifRunning();
+        }
 //        return true;
     }
 }

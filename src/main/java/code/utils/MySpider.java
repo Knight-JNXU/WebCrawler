@@ -1,5 +1,6 @@
 package code.utils;
 
+import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 
