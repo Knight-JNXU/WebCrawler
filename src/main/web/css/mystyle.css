@@ -42,3 +42,9 @@
     font-family: 新宋体;
     font-weight:bold;
 }
+.link{
+    color: -webkit-link;
+    text-decoration: underline;
+    cursor: auto;line-height: 1.54;font-weight: 400;
+    font-size: medium;margin-bottom: 1px;word-wrap: break-word;
+}

@@ -1,6 +1,8 @@
 package code.service;
 
+import code.dao.SearchDao;
 import code.model.FilmModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +12,9 @@ import java.util.List;
  */
 @Service
 public class SearchService extends BaseService {
-    public List<FilmModel> getFilms(){
-
+    @Autowired
+    SearchDao searchDao;
+    public List<FilmModel> getFilms(String name){
+        return searchDao.getFilms(name);
     }
 }

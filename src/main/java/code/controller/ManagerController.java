@@ -16,17 +16,20 @@ public class ManagerController {
     @Autowired
     ManagerService managerService;
 
+    @RequestMapping(value = "/index")
+    public String index(){
+        return "manager";
+    }
+
     @RequestMapping(value = "/input")
     public String input(){
         managerService.input();
         return "manager";
     }
 
-    @ResponseBody
     @RequestMapping(value = "/isRunning")
     public String isRunning(){
         return (""+managerService.isRunning());
-//        return "";
     }
 
 }

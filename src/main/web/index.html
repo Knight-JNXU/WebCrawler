@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <title>search</title>
     <link href="css/mystyle.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="/js/myjs.js"></script>
 </head>
 <body style="text-align:center">
 <img src="./images/search.png" style="height: 150px;width:300px;margin-top: 10%;">
 <form>
-    <input type="text" class="searchinput">
-    <input type="submit" value="search" class="searchsubmit">
+    <input id="searchInput" type="text" name="name" class="searchinput">
+    <input type="button" value="search" class="searchsubmit" onclick="search('/search/getFilms',document.getElementById('searchInput').value)">
 </form>
 </body>
 </html>

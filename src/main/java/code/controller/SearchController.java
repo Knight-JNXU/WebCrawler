@@ -3,9 +3,13 @@ package code.controller;
 import code.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by Knight_JXNU on 2016/12/22.
@@ -17,7 +21,8 @@ public class SearchController {
     SearchService searchService;
 
     @RequestMapping(value = "/getFilms", method = RequestMethod.POST)
-    public String getFilms(@RequestParam String name){
-        return "";
+    public String getFilms(@RequestParam String name, Model model){
+        model.addAttribute("list", searchService.getFilms(name));
+        return "results";
     }
 }
