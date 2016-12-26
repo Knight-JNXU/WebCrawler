@@ -22,4 +22,9 @@ public class SearchController {
         model.addAttribute("list", searchService.getFilms(name));
         return "results";
     }
+
+    @RequestMapping(value = "/re")
+    public String re(){
+        return "results";
+    }
 }

@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <title>search</title>
     <link href="css/mystyle.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="/js/myjs.js"></script>
+    <script type="text/javascript" src="js/myjs.js"></script>
+    <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
 </head>
 <body style="text-align:center">
 <img src="./images/search.png" style="height: 150px;width:300px;margin-top: 10%;">
-<form>
+<form action="/search/getFilms" method="post" onsubmit="return checkSearch();">
     <input id="searchInput" type="text" name="name" class="searchinput">
-    <input type="button" value="search" class="searchsubmit" onclick="search('/search/getFilms',document.getElementById('searchInput').value)">
+    <input type="submit" value="search" class="searchsubmit">
 </form>
 </body>
 </html>

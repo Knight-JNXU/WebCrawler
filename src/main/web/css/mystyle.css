@@ -45,10 +45,17 @@
 .link{
     color: -webkit-link;
     text-decoration: underline;
-    cursor: auto;line-height: 1.54;font-weight: 400;
-    font-size: medium;margin-bottom: 1px;word-wrap: break-word;
+    cursor: auto;
+    line-height: 0.5;
+    font-weight: 400;
+    font-size: medium;
+    word-wrap: break-word;
+    display:block;
 }
 .textcenter{
     text-align:center;
     padding:20px 0;
+}
+.resultdiv{
+    margin-left: 10px;
 }
