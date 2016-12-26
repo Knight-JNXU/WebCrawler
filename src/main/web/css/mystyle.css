@@ -48,3 +48,7 @@
     cursor: auto;line-height: 1.54;font-weight: 400;
     font-size: medium;margin-bottom: 1px;word-wrap: break-word;
 }
+.textcenter{
+    text-align:center;
+    padding:20px 0;
+}

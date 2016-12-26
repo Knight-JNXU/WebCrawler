@@ -2,8 +2,6 @@ package code.utils;
 
 import code.dao.ManagerDao;
 import code.model.FilmModel;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;

@@ -23,3 +23,13 @@ function checkIsRun(url) {
         }
     });
 }
+function inputStop(url) {
+    $.ajax({
+        type:'GET',
+        url:url_head+url,
+        dataType:'json',
+        complete:function (coordinates) {
+            alert(coordinates.responseText);
+        }
+    });
+}
