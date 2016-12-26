@@ -85,6 +85,13 @@
             <version>1.7.22</version>
         </dependency>
 
+        <!-- jstl -->
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
     </dependencies>
 
 </project>
