@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="Shortcut Icon" href="images/icon.jpg">
     <meta charset="UTF-8">
     <title>manager</title>
     <link href="../css/mystyle.css" rel="stylesheet" type="text/css"/>

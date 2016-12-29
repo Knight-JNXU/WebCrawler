@@ -59,3 +59,64 @@
 .resultdiv{
     margin-left: 10px;
 }
+.aboutbutton{
+    background-color: rgb(26, 188, 156);
+    color: #ffffff;float: right;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 8.3px 16px;
+    border-radius: 3px;
+    border: 0 !important;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    user-select: none;
+    background-image: none;
+    margin: 10px;
+}
+
+.aboutbody{
+    font-family: Microsoft YaHei;
+    /*font-family: Tahoma;*/
+    text-align: center;
+
+}
+
+.aboutalldiv{
+    margin-top: 50px;
+    background-color: #b8b8b8;
+    MARGIN-RIGHT: auto; MARGIN-LEFT: auto;
+    width: 300px;
+    height: 400px;
+}
+
+.aboutcontent{
+    height: 38px;
+    line-height: 25px;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: 16px;
+    color: black;
+    box-shadow: none;
+    font-weight: normal;
+}
+
+.myportrait {
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-image: url(https://avatars0.githubusercontent.com/u/21081491?v=3&s=460);
+    background-size: 120%;
+    background-position: center;
+    border-radius: 50%;
+    border: 5px solid #607d8b;
+    width: 160px;
+    height: 160px;
+}
