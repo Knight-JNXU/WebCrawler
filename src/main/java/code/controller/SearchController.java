@@ -23,8 +23,4 @@ public class SearchController {
         return "results";
     }
 
-    @RequestMapping(value = "/re")
-    public String re(){
-        return "results";
-    }
 }
