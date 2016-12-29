@@ -1,7 +1,8 @@
 /**
  * Created by Knight_JXNU on 2016/12/19.
  */
-var url_head="";
+// var url_head="";
+var url_head="/FilmsSearch";
 function getHead() {
     return url_head;
 }
@@ -25,14 +26,16 @@ function search(url, name) {
     request.send("name="+name);*/
     $.ajax({
         type:'POST',
-        url:url_head+url,
+        url:(url_head+url),
         data:$('searchInput').serialize()
     });
 }
 function checkIsRun(url) {
+    var temp = url_head+url;
     $.ajax({
         type:'GET',
-        url:url_head+url,
+        // url:url_head+url,
+        url:(url_head+url),
         dataType:'json',
         complete:function (coordinates) {
             alert(coordinates.responseText);

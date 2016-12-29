@@ -20,7 +20,7 @@
 <div style="margin-top: 0%;">
     <input type="button" class="managersubmit" value="录入" onclick="buttonGet('/manag/input')"><br><br>
     <input type="button" class="managersubmit" value="检测" onclick="checkIsRun('/manag/isRunning')"><br><br>
-    <input type="button" class="managersubmit" value="停止" onclick="checkIsRun('/manag/stop')"><br><br>
+    <input type="button" class="managersubmit" value="停止" onclick="inputStop('/manag/stop')"><br><br>
 </div>
 </body>
 </html>
