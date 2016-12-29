@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <link rel="Shortcut Icon" href="images/icon.ico">
+    <link rel="Shortcut Icon" href="../images/icon.ico">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>results</title>
     <link href="../css/mystyle.css" rel="stylesheet" type="text/css"/>
