@@ -1,5 +1,6 @@
 package code.dao;
 
+import code.Model.BlogModel;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -7,4 +8,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class ManagerDao extends BaseDao {
+    public void insertBlog(BlogModel blogModel){
+        super.set(Prefix+blogModel.getTitle(), jsonUtils.obj2Str(blogModel));
+    }
 }

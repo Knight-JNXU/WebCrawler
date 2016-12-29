@@ -1,10 +1,13 @@
 package code.utils;
 
+import code.Model.BlogModel;
 import code.dao.ManagerDao;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
+
+import java.util.List;
 
 /**
  * Created by Knight_JXNU on 2016/11/25.
@@ -30,8 +33,14 @@ public class CsdnBlogCrawler implements PageProcessor {
         page.putField("title", page.getHtml().xpath("//h3[@class='tracking-ad']/a/text()").all());
         page.putField("author", page.getHtml().xpath("//a[@class='nickname']/text()").all());
         page.putField("url", page.getHtml().xpath("//h3[@class='tracking-ad']/a").links().all());
+
+        List<String> titles = page.getHtml().xpath("//h3[@class='tracking-ad']/a/text()").all();
+        List<String> authors = page.getHtml().xpath("//a[@class='nickname']/text()").all();
+        List<String> urls = page.getHtml().xpath("//h3[@class='tracking-ad']/a").links().all();
+        for(int i=0; i<titles.size(); i++){
+            managerDao.insertBlog(new BlogModel(titles.get(i), urls.get(i), authors.get(i)));
+        }
         page.addTargetRequests(page.getHtml().links().regex(URL_LIST).all());
-        System.out.println("url:"+page.getUrl());
     }
 
     public Site getSite() {

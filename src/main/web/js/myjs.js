@@ -1,7 +1,7 @@
 /**
  * Created by Knight_JXNU on 2016/12/19.
  */
-var url_head="";
+var url_head="/CSDNSearch/";
 function getHead() {
     return url_head;
 }

@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="Shortcut Icon" href="images/icon.ico">
     <meta charset="UTF-8">
     <title>manager</title>
     <link href="../css/mystyle.css" rel="stylesheet" type="text/css"/>
@@ -20,7 +21,7 @@
 <div style="margin-top: 0%;">
     <input type="button" class="managersubmit" value="录入" onclick="buttonGet('/manag/input')"><br><br>
     <input type="button" class="managersubmit" value="检测" onclick="checkIsRun('/manag/isRunning')"><br><br>
-    <input type="button" class="managersubmit" value="停止" onclick="checkIsRun('/manag/stop')"><br><br>
+    <input type="button" class="managersubmit" value="停止" onclick="inputStop('/manag/stop')"><br><br>
 </div>
 </body>
 </html>

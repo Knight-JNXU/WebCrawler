@@ -1,5 +1,6 @@
 package code.dao;
 
+import code.utils.JSONUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
@@ -13,6 +14,9 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 public class BaseDao {
     @Autowired
     protected RedisTemplate<String, Object> redisTemplate;
+    @Autowired
+    protected JSONUtils jsonUtils;
+    protected String Prefix = "blog:";
 
     /**
      * 获取RedisSerializer
