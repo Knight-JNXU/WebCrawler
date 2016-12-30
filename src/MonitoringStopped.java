@@ -15,11 +15,11 @@ public class MonitoringStopped {
             return new MySpider(pageProcessor);
         }
 
-        @Override
-        public void close() {
-            super.close();
-            System.out.println("I am over!");
-        }
+//        @Override
+//        public void close() {
+//            super.close();
+//            System.out.println("I am over!");
+//        }
     }
     public static void main(String[] args){
         MySpider.create(new CsdnBlogPageProcessor()).addUrl("http://blog.csdn.net/qq598535550").thread(5).run();

@@ -3,12 +3,20 @@ import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.util.List;
 
 /**
  * Created by Knight_JXNU on 2016/10/14.
  */
-public class CsdnBlogPageProcessor implements PageProcessor {
+public class CsdnBlogPageProcessor implements PageProcessor, Closeable{
+
+    @Override
+    public void close() throws IOException {
+        System.out.println("I am over!");
+    }
+
     private static String username = "qq598535550";  //设置csdn用户名
     private static int size = 0;  //共抓取到的文章数量
 
@@ -77,6 +85,8 @@ public class CsdnBlogPageProcessor implements PageProcessor {
         return site;
     }
 
+
+
     public static void main(String args[]){
         long startTime, endTime;
         System.out.println("start:");
@@ -89,4 +99,5 @@ public class CsdnBlogPageProcessor implements PageProcessor {
         System.out.println("article number:" + size);
         System.out.println("time consuming:" + (endTime-startTime)/1000 + "s");
     }
+
 }
