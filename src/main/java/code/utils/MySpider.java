@@ -22,4 +22,10 @@ public class MySpider extends Spider {
             return false;
         }
     }
+
+    @Override
+    public void run() {
+        super.run();
+    }
+
 }

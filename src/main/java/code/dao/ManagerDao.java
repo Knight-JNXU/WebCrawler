@@ -15,6 +15,6 @@ public class ManagerDao extends BaseDao {
         super.set(Prefix+blogModel.getTitle(), jsonUtils.obj2Str(blogModel));
     }
     public void sendEmail(){
-        emailDao.sendHtmlEmail("CSDN 博客爬虫关闭!");
+        emailDao.sendHtmlEmail("CSDN 博客录入结束!");
     }
 }

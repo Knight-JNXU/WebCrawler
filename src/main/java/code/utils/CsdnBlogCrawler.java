@@ -14,6 +14,7 @@ import java.util.List;
  * Created by Knight_JXNU on 2016/11/25.
  */
 public class CsdnBlogCrawler implements PageProcessor,Closeable {
+    private boolean hasInput = false;
     private ManagerDao managerDao;
 
     public CsdnBlogCrawler(ManagerDao managerDao) {
@@ -31,6 +32,7 @@ public class CsdnBlogCrawler implements PageProcessor,Closeable {
     private static final String URL_LIST = "/?ref=toolbar_logo&page=\\d+";
 
     public void process(Page page) {
+        hasInput = true;
         page.putField("title", page.getHtml().xpath("//h3[@class='tracking-ad']/a/text()").all());
         page.putField("author", page.getHtml().xpath("//a[@class='nickname']/text()").all());
         page.putField("url", page.getHtml().xpath("//h3[@class='tracking-ad']/a").links().all());
@@ -49,7 +51,10 @@ public class CsdnBlogCrawler implements PageProcessor,Closeable {
     }
 
     public void close() throws IOException {
-        managerDao.sendEmail();
+        if(hasInput){
+            managerDao.sendEmail();
+        }
+        hasInput = false;
     }
 
 }
