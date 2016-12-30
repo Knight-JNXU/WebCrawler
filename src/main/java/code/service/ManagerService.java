@@ -1,5 +1,6 @@
 package code.service;
 
+import code.dao.EmailDao;
 import code.dao.ManagerDao;
 import code.utils.MySpider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ManagerService extends BaseService {
-    @Autowired
-    private ManagerDao managerDao;
     @Autowired
     private MySpider mySpider;
 
@@ -35,4 +34,5 @@ public class ManagerService extends BaseService {
             mySpider.stop();
         }
     }
+
 }

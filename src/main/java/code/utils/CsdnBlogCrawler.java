@@ -6,12 +6,14 @@ import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.util.List;
 
 /**
  * Created by Knight_JXNU on 2016/11/25.
  */
-public class CsdnBlogCrawler implements PageProcessor {
+public class CsdnBlogCrawler implements PageProcessor,Closeable {
     private ManagerDao managerDao;
 
     public CsdnBlogCrawler(ManagerDao managerDao) {
@@ -46,7 +48,8 @@ public class CsdnBlogCrawler implements PageProcessor {
         return site;
     }
 
-//    public static void main(String[] args) {
-//        Spider.create(new CsdnBlogCrawler()).addUrl("http://blog.csdn.net/?ref=toolbar_logo&page=1").thread(5).run();
-//    }
+    public void close() throws IOException {
+        managerDao.sendEmail();
+    }
+
 }
