@@ -1,10 +1,9 @@
 package code.utils;
 
-import code.Model.BlogModel;
+import code.model.BlogModel;
 import code.dao.ManagerDao;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 
 import java.util.List;

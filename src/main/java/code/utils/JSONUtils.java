@@ -1,6 +1,6 @@
 package code.utils;
 
-import code.Model.BaseModel;
+import code.model.BaseModel;
 import com.google.gson.Gson;
 
 /**

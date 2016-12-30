@@ -1,6 +1,6 @@
 package code.service;
 
-import code.Model.BlogModel;
+import code.model.BlogModel;
 import code.dao.SearchDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

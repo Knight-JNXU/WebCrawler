@@ -1,6 +1,6 @@
 package code.dao;
 
-import code.Model.BlogModel;
+import code.model.BlogModel;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

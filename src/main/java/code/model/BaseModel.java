@@ -1,4 +1,4 @@
-package code.Model;
+package code.model;
 
 /**
  * Created by Knight_JXNU on 2016/12/28.
