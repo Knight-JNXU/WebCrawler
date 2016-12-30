@@ -8,6 +8,7 @@ import us.codecraft.webmagic.processor.PageProcessor;
 
 import java.io.Closeable;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,9 +41,13 @@ public class CsdnBlogCrawler implements PageProcessor,Closeable {
         List<String> titles = page.getHtml().xpath("//h3[@class='tracking-ad']/a/text()").all();
         List<String> authors = page.getHtml().xpath("//a[@class='nickname']/text()").all();
         List<String> urls = page.getHtml().xpath("//h3[@class='tracking-ad']/a").links().all();
+        List<String> keys = titles;
+        List<String> values = new ArrayList<String>();
         for(int i=0; i<titles.size(); i++){
-            managerDao.insertBlog(new BlogModel(titles.get(i), urls.get(i), authors.get(i)));
+//            managerDao.insertBlog(new BlogModel(titles.get(i), urls.get(i), authors.get(i)));
+            values.add(managerDao.getJsonUtils().obj2Str(new BlogModel(titles.get(i), urls.get(i), authors.get(i))));
         }
+        managerDao.insertBlogs(keys, values);
         page.addTargetRequests(page.getHtml().links().regex(URL_LIST).all());
     }
 
