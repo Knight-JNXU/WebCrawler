@@ -4,8 +4,11 @@ import code.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
@@ -54,6 +57,17 @@ public class ManagerController extends BaseController{
             pw.print("录入停止成功!");
         }else{
             pw.print("录入停止失败!");
+        }
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String login(@RequestParam String username, @RequestParam String password,
+                        HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception{
+        if(managerService.login(username, password)){
+            return index();
+        }else{
+            httpServletResponse.sendRedirect(httpServletRequest.getContextPath()+"/htmls/login.html");
+            return null;
         }
     }
 }

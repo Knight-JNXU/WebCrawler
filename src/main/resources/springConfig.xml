@@ -32,4 +32,13 @@
     <bean class="code.utils.JSONUtils">
     </bean>
 
+    <!-- 拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/manag/**"/>
+            <mvc:exclude-mapping path="/manag/login"/> <!-- 无需拦截的请求 -->
+            <bean class="code.utils.ManagerInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>

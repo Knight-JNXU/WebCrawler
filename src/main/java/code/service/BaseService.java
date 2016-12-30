@@ -10,4 +10,8 @@ public class BaseService {
     protected String BT_URL;
     @Value("#{mysettings.THREAD_NUM}")
     protected int THREAD_NUM;
+    @Value("#{mysettings.ADMIN_NAME}")
+    protected String ADMIN_NAME;
+    @Value("#{mysettings.ADMIN_PASS}")
+    protected String ADMIN_PASS;
 }

@@ -35,4 +35,12 @@ public class ManagerService extends BaseService {
         }
     }
 
+    public boolean login(String username, String password){
+        if(username.equals(ADMIN_NAME) && password.equals(ADMIN_PASS)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
