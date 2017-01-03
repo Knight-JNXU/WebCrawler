@@ -24,7 +24,7 @@ public class ManagerDao extends BaseDao {
      * @param blogModel
      */
     public void insertBlog(BlogModel blogModel){
-        super.set(BlogPrefix +blogModel.getShTitle(), jsonUtils.obj2Str(blogModel));
+        super.set(BlogPrefix +blogModel.getTitle(), jsonUtils.obj2Str(blogModel));
     }
 
     /**

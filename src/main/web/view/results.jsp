@@ -16,12 +16,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <Title>results</Title>
     <link href="../css/mystyle.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/resultstyle.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div class="resultdiv">
+    <div class="numstyle">结果数量：${size}</div>
     <c:forEach var="item" items="${list}">
-        <a class="link" href="${item.url}">${item.shTitle}</a><br>
-        ${item.author}<br><br>
+        <article class="excerpt excerpt-5" style=""><a class="focus" href="#" title="用DTcms做一个独立博客网站（响应式模板）" target="_blank" ></a>
+            <header><a class="cat" style= "cursor:default" href="javascript:return false;" >${item.author}<i></i></a>
+                <h2><a href="${item.url}" target="_blank" >${item.title}</a>
+                </h2>
+            </header>
+        </article>
     </c:forEach>
 </div>
 </body>
