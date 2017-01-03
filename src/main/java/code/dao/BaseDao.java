@@ -8,8 +8,11 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
+import redis.clients.jedis.Jedis;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Knight_JXNU on 2016/12/28.
@@ -118,4 +121,5 @@ public class BaseDao {
         });
         return (new String(valueByte,"UTF-8"));
     }
+
 }

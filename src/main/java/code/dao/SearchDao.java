@@ -1,6 +1,7 @@
 package code.dao;
 
 import code.model.BlogModel;
+import code.model.ShRdModel;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class SearchDao extends BaseDao {
      */
     public List<BlogModel> getBlogs(String title){
         insertShRd(title);
-        Set<String> names = redisTemplate.keys("blog:*"+title+"*");
+        Set<String> names = redisTemplate.keys(BlogPrefix+"*"+title+"*");
         List<BlogModel> list = new ArrayList<BlogModel>();
         for(String k : names){
             String rulst = (String) get(k);
@@ -34,11 +35,13 @@ public class SearchDao extends BaseDao {
      * @param title
      */
     private void insertShRd(String title){
-        String num = (String) get(BlogSearchPrefix+title);
-        if(num==null){
-            set(BlogSearchPrefix+title, "1");
+        String result = (String) get(BlogSearchPrefix+title);
+        if(result==null){
+            super.set(BlogSearchPrefix+title, jsonUtils.obj2Str(new ShRdModel(title, 1)));
         }else{
-            set(BlogSearchPrefix+title, (Integer.valueOf(num)+1+""));
+            ShRdModel shRdModel = jsonUtils.str2Obj(result, ShRdModel.class);
+            shRdModel.addNum();
+            set(BlogSearchPrefix+title, jsonUtils.obj2Str(shRdModel));
         }
     }
 }

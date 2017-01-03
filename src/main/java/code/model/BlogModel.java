@@ -18,12 +18,12 @@ public class BlogModel extends BaseModel {
         this.author = author;
     }
 
-    public String getTitle() {
+    public String getShTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setShTitle(String shTitle) {
+        this.title = shTitle;
     }
 
     public String getUrl() {

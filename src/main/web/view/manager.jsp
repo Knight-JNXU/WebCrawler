@@ -11,7 +11,7 @@
 <head>
     <link rel="Shortcut Icon" href="../images/icon.ico">
     <meta charset="UTF-8">
-    <title>manager</title>
+    <Title>manager</Title>
     <link href="../css/mystyle.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../js/myjs.js"></script>
     <script type="text/javascript" src="../js/jquery-2.1.4.js"></script>
@@ -22,6 +22,7 @@
     <input type="button" class="managersubmit" value="录入" onclick="buttonGet('/manag/input')"><br><br>
     <input type="button" class="managersubmit" value="检测" onclick="checkIsRun('/manag/isRunning')"><br><br>
     <input type="button" class="managersubmit" value="停止" onclick="inputStop('/manag/stop')"><br><br>
+    <a href="/CSDNSearch/manag/analysis"><input type="button" class="managersubmit" value="分析"></a><br><br>
 </div>
 </body>
 </html>

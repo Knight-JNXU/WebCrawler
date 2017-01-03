@@ -1,8 +1,10 @@
 package code.controller;
 
+import code.model.ShRdModel;
 import code.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.util.List;
 
 /**
  * Created by Knight_JXNU on 2016/12/28.
@@ -64,10 +67,17 @@ public class ManagerController extends BaseController{
     public String login(@RequestParam String username, @RequestParam String password,
                         HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception{
         if(managerService.login(username, password)){
+            httpServletRequest.getSession().setAttribute("username", username);
             return index();
         }else{
             httpServletResponse.sendRedirect(httpServletRequest.getContextPath()+"/htmls/login.html");
             return null;
         }
+    }
+
+    @RequestMapping(value = "/analysis")
+    public String analysis(Model model){
+        model.addAttribute("records", managerService.getRecords());
+        return "analysis";
     }
 }

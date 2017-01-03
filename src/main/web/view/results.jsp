@@ -14,13 +14,13 @@
 <head>
     <link rel="Shortcut Icon" href="../images/icon.ico">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>results</title>
+    <Title>results</Title>
     <link href="../css/mystyle.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div class="resultdiv">
     <c:forEach var="item" items="${list}">
-        <a class="link" href="${item.url}">${item.title}</a><br>
+        <a class="link" href="${item.url}">${item.shTitle}</a><br>
         ${item.author}<br><br>
     </c:forEach>
 </div>

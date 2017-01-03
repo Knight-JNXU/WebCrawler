@@ -2,9 +2,12 @@ package code.service;
 
 import code.dao.EmailDao;
 import code.dao.ManagerDao;
+import code.model.ShRdModel;
 import code.utils.MySpider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by Knight_JXNU on 2016/12/28.
@@ -13,6 +16,8 @@ import org.springframework.stereotype.Service;
 public class ManagerService extends BaseService {
     @Autowired
     private MySpider mySpider;
+    @Autowired
+    private ManagerDao managerDao;
 
     //录入
     public void input(){
@@ -41,6 +46,10 @@ public class ManagerService extends BaseService {
         }else{
             return false;
         }
+    }
+
+    public List<ShRdModel> getRecords(){
+        return managerDao.getRecords();
     }
 
 }
