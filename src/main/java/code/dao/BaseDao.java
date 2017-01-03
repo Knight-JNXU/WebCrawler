@@ -19,7 +19,9 @@ public class BaseDao {
     protected RedisTemplate<String, Object> redisTemplate;
     @Autowired
     protected JSONUtils jsonUtils;
-    protected String Prefix = "blog:";
+    protected String BlogPrefix = "blog:";
+    protected String BlogSearchPrefix = "blogShRd:";
+
 
     /**
      * 获取RedisSerializer
