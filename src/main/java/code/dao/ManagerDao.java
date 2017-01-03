@@ -39,7 +39,7 @@ public class ManagerDao extends BaseDao {
     public void sendEmail(){
         emailDao.sendHtmlEmail("CSDN 博客录入结束!<br>"+
                 "录入数据 <b>"+ CsdnBlogCrawler.inputTimes+"</b> 条!<br>"+
-                "耗时 <b>"+(StaticModel.endTime-StaticModel.startTime)+"</b> 毫秒");
+                "耗时 <b>"+(StaticModel.endTime-StaticModel.startTime)+"</b> 毫秒!");
     }
 
     public List<ShRdModel> getRecords(){
