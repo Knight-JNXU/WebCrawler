@@ -3,10 +3,12 @@ package code.service;
 import code.dao.EmailDao;
 import code.dao.ManagerDao;
 import code.model.ShRdModel;
+import code.model.StaticModel;
 import code.utils.MySpider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,6 +23,7 @@ public class ManagerService extends BaseService {
 
     //录入
     public void input(){
+        StaticModel.startTime = new Date().getTime();
         mySpider.addUrl(BT_URL).thread(THREAD_NUM).run();
     }
 

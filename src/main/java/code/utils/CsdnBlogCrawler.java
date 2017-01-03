@@ -2,6 +2,7 @@ package code.utils;
 
 import code.model.BlogModel;
 import code.dao.ManagerDao;
+import code.model.StaticModel;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;
@@ -9,6 +10,7 @@ import us.codecraft.webmagic.processor.PageProcessor;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,6 +19,7 @@ import java.util.List;
 public class CsdnBlogCrawler implements PageProcessor,Closeable {
     private boolean hasInput = false;
     private ManagerDao managerDao;
+    public static long inputTimes = 0;
 
     public CsdnBlogCrawler(ManagerDao managerDao) {
         this.managerDao = managerDao;
@@ -43,8 +46,8 @@ public class CsdnBlogCrawler implements PageProcessor,Closeable {
         List<String> urls = page.getHtml().xpath("//h3[@class='tracking-ad']/a").links().all();
         List<String> keys = titles;
         List<String> values = new ArrayList<String>();
+        inputTimes+=titles.size();
         for(int i=0; i<titles.size(); i++){
-//            managerDao.insertBlog(new BlogModel(titles.get(i), urls.get(i), authors.get(i)));
             values.add(managerDao.getJsonUtils().obj2Str(new BlogModel(titles.get(i), urls.get(i), authors.get(i))));
         }
         managerDao.insertBlogs(keys, values);
@@ -56,10 +59,12 @@ public class CsdnBlogCrawler implements PageProcessor,Closeable {
     }
 
     public void close() throws IOException {
+        StaticModel.endTime = new Date().getTime();
         if(hasInput){
             managerDao.sendEmail();
         }
         hasInput = false;
+        inputTimes = 0;
     }
 
 }

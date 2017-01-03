@@ -2,6 +2,8 @@ package code.dao;
 
 import code.model.BlogModel;
 import code.model.ShRdModel;
+import code.model.StaticModel;
+import code.utils.CsdnBlogCrawler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -35,7 +37,9 @@ public class ManagerDao extends BaseDao {
     }
 
     public void sendEmail(){
-        emailDao.sendHtmlEmail("CSDN 博客录入结束!");
+        emailDao.sendHtmlEmail("CSDN 博客录入结束!<br>"+
+                "录入数据 <b>"+ CsdnBlogCrawler.inputTimes+"</b> 条!<br>"+
+                "耗时 <b>"+(StaticModel.endTime-StaticModel.startTime)+"</b> 毫秒");
     }
 
     public List<ShRdModel> getRecords(){

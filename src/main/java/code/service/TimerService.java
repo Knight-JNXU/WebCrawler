@@ -25,7 +25,6 @@ public class TimerService {
     private ManagerService managerService;
 
     public TimerService() {
-
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
