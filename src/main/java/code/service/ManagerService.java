@@ -1,9 +1,9 @@
 package code.service;
 
-import code.dao.EmailDao;
 import code.dao.ManagerDao;
 import code.model.ShRdModel;
 import code.model.StaticModel;
+import code.utils.CsdnBlogCrawler;
 import code.utils.MySpider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,14 +16,16 @@ import java.util.List;
  */
 @Service
 public class ManagerService extends BaseService {
-    @Autowired
     private MySpider mySpider;
     @Autowired
     private ManagerDao managerDao;
+    @Autowired
+    private CsdnBlogCrawler csdnBlogCrawler;
 
     //录入
     public void input(){
         StaticModel.startTime = new Date().getTime();
+        mySpider = new MySpider(csdnBlogCrawler);
         mySpider.addUrl(BT_URL).thread(THREAD_NUM).run();
     }
 
@@ -53,6 +55,11 @@ public class ManagerService extends BaseService {
 
     public List<ShRdModel> getRecords(){
         return managerDao.getRecords();
+    }
+
+    public void targetMethod(){
+        System.out.println("**********************************targetMethod start!*********************************");
+        input();
     }
 
 }
