@@ -13,7 +13,7 @@ import java.util.TimerTask;
  */
 @Service
 public class TimerService {
-    private Calendar calendar;
+    /*private Calendar calendar;
     {
         calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, 2);
@@ -25,12 +25,12 @@ public class TimerService {
     private ManagerService managerService;
 
     public TimerService() {
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                managerService.input();
-            }
-        }, time, 1000*60*60*24);
-    }
+//        Timer timer = new Timer();
+//        timer.scheduleAtFixedRate(new TimerTask() {
+//            @Override
+//            public void run() {
+//                managerService.input();
+//            }
+//        }, time, 1000*60*60*24);
+    }*/
 }

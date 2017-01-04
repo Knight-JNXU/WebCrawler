@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--<bean id="managerService" class="code.service.ManagerService" scope="singleton"></bean>-->
+    <bean id="timeDitail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean" scope="singleton">
+        <!-- 目标类 -->
+        <property name="targetObject" ref="managerService"></property>
+        <!-- 目标方法 -->
+        <property name="targetMethod" value="targetMethod"></property>
+        <!-- 是否启用多线程并发 -->
+        <property name="concurrent" value="false"></property>
+    </bean>
+
+    <!--<bean id="timeTigger"
+          class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+        <property name="jobDetail" ref="timeDitail" />
+        &lt;!&ndash; 延迟触发时间，延迟10秒进行触发 &ndash;&gt;
+        <property name="startDelay" value="10000" />
+        &lt;!&ndash; 重复触发的时间间隔，5秒 &ndash;&gt;
+        <property name="repeatInterval" value="5000" />
+        <property name="repeatCount" value="0"/>
+        <property name="description">
+            <value>* */2 * * * ?</value>
+        </property>
+    </bean>-->
+    <bean id="timeTigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean" scope="singleton">
+        <property name="jobDetail" ref="timeDitail"></property>
+        <!-- 设置执行周期 -->
+        <property name="cronExpression">
+            <!--<value>* 31 13 * * ?</value>-->
+            <value>* */5 * * * ?</value>
+        </property>
+    </bean>
+
+    <bean id="startJob" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" scope="singleton">
+        <!-- 可以覆盖一些 SchedulerFactoryBean 的配置 -->
+        <property name="quartzProperties">
+            <props>
+                <!-- 指定线程数 -->
+                <prop key="org.quartz.threadPool.threadCount">1</prop>
+            </props>
+        </property>
+        <!--<property name="configLocation" value="classpath:quartz.properties"/>-->
+        <property name="triggers">
+                <ref bean="timeTigger"/>
+        </property>
+    </bean>
+
+</beans>

@@ -41,4 +41,16 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
+    <!-- 为了实现redis保存功能，在这里注入一堆的东西，想到更好的方法再说吧 -->
+    <bean id="managerDao" class="code.dao.ManagerDao" scope="singleton"></bean>
+    <bean id="btTianTangPageProcesser" class="code.utils.CsdnBlogCrawler" scope="singleton">
+        <constructor-arg ref="managerDao"/>
+    </bean>
+    <bean class="code.utils.MySpider" scope="singleton">
+        <constructor-arg ref="btTianTangPageProcesser"/>
+    </bean>
+
+    <!-- 定时器配置 -->
+    <!--<import resource="timerConfig.xml"/>-->
+
 </beans>
