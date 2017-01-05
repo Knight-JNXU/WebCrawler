@@ -6,6 +6,7 @@ import code.model.StaticModel;
 import code.utils.CsdnBlogCrawler;
 import code.utils.MySpider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -15,7 +16,7 @@ import java.util.List;
  * Created by Knight_JXNU on 2016/12/28.
  */
 @Service
-public class ManagerService extends BaseService {
+public class ManagerService extends BaseService{
     private MySpider mySpider;
     @Autowired
     private ManagerDao managerDao;
@@ -57,8 +58,11 @@ public class ManagerService extends BaseService {
         return managerDao.getRecords();
     }
 
+//    @Scheduled(cron = "${EVE_FIVE_MINUTE}")
+    @Scheduled(cron = "${SCHEDULE}")
     public void targetMethod(){
         System.out.println("**********************************targetMethod start!*********************************");
+        System.out.println("time:" + new Date());
         input();
     }
 
