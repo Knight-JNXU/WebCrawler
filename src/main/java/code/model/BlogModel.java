@@ -2,6 +2,7 @@ package code.model;
 
 /**
  * Created by Knight_JXNU on 2016/12/28.
+ * 这个是博客的model
  */
 public class BlogModel extends BaseModel {
     private String title;

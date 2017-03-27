@@ -2,6 +2,7 @@ package code.model;
 
 /**
  * Created by Knight_JXNU on 2017/1/3.
+ * 这个是用来保存用户搜索记录的model
  */
 public class ShRdModel extends BaseModel{
     private String shTitle;
