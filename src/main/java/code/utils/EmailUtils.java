@@ -50,15 +50,15 @@ public class EmailUtils {
     //初始化连接邮件服务器的会话信息
     private Properties properties = null;
 
-    private void setProperties(){
-        LOGGER.info("create  properties start!");
+    private void initializeProperties(){
+        LOGGER.info("initialize  properties!");
         properties = new Properties();
         properties.setProperty("mail.transport.protocol", PROTOCOL);
         properties.setProperty("mail.smtp.host", HOST);
         properties.setProperty("mail.smtp.port", PORT);
         properties.setProperty("mail.smtp.auth", IS_AUTH);
         properties.setProperty("mail.debug", IS_ENABLED_DEBUG_MOD);
-        LOGGER.info("create  properties over!");
+        LOGGER.info("initialize  properties over!");
     }
 
     private class MyAuthenticator extends Authenticator {
@@ -74,7 +74,7 @@ public class EmailUtils {
      */
     public void sendHtmlEmail(String mes){
         if(null==properties){
-            setProperties();
+            initializeProperties();
         }
         try {
             //创建Session实例对象
