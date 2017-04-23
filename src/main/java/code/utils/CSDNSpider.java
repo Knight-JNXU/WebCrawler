@@ -6,13 +6,12 @@ import us.codecraft.webmagic.processor.PageProcessor;
 /**
  * Created by Knight_JXNU on 2016/12/19.
  */
-public class MySpider extends Spider {
-//public class MySpider {
-    public MySpider(PageProcessor pageProcessor) {
+public class CSDNSpider extends Spider {
+    public CSDNSpider(PageProcessor pageProcessor) {
         super(pageProcessor);
     }
-    public static MySpider create(PageProcessor pageProcessor) {
-        return new MySpider(pageProcessor);
+    public static CSDNSpider create(PageProcessor pageProcessor) {
+        return new CSDNSpider(pageProcessor);
     }
     //检查spider是否继续运行
     public boolean ifRunning() {

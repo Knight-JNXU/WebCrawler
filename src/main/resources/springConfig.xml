@@ -50,8 +50,5 @@
     <bean id="CSDNSearchPageProcesser" class="code.utils.CsdnBlogCrawler" scope="singleton">
         <constructor-arg ref="managerDao"/>
     </bean>
-    <bean class="code.utils.MySpider" scope="singleton">
-        <constructor-arg ref="CSDNSearchPageProcesser"/>
-    </bean>
 
 </beans>

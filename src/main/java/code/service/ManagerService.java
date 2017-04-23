@@ -3,8 +3,10 @@ package code.service;
 import code.dao.ManagerDao;
 import code.model.ShRdModel;
 import code.model.StaticModel;
+import code.utils.CSDNSpider;
 import code.utils.CsdnBlogCrawler;
-import code.utils.MySpider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,11 @@ import java.util.List;
  */
 @Service
 public class ManagerService extends BaseService{
-    private MySpider mySpider;
+
+    private static final Logger LOGGER =
+            LoggerFactory.getLogger(ManagerService.class);
+
+    private CSDNSpider mySpider;
     @Autowired
     private ManagerDao managerDao;
     @Autowired
@@ -26,7 +32,7 @@ public class ManagerService extends BaseService{
     //录入
     public void input(){
         StaticModel.startTime = new Date().getTime();
-        mySpider = new MySpider(csdnBlogCrawler);
+        mySpider = new CSDNSpider(csdnBlogCrawler);
         mySpider.addUrl(BT_URL).thread(THREAD_NUM).run();
     }
 
@@ -58,11 +64,10 @@ public class ManagerService extends BaseService{
         return managerDao.getRecords();
     }
 
-//    @Scheduled(cron = "${EVE_FIVE_MINUTE}")
     @Scheduled(cron = "${SCHEDULE}")
     public void targetMethod(){
-        System.out.println("**********************************targetMethod start!*********************************");
-        System.out.println("time:" + new Date());
+        LOGGER.info("**********************************targetMethod start!*********************************");
+        LOGGER.info("time: {}", new Date().toString());
         input();
     }
 
