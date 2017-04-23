@@ -3,6 +3,7 @@ package code.utils;
 import code.model.BlogModel;
 import code.dao.ManagerDao;
 import code.model.StaticModel;
+import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;

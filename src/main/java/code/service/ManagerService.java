@@ -23,7 +23,7 @@ public class ManagerService extends BaseService{
     private static final Logger LOGGER =
             LoggerFactory.getLogger(ManagerService.class);
 
-    private CSDNSpider mySpider;
+    private CSDNSpider csdnSpider;
     @Autowired
     private ManagerDao managerDao;
     @Autowired
@@ -32,23 +32,23 @@ public class ManagerService extends BaseService{
     //录入
     public void input(){
         StaticModel.startTime = new Date().getTime();
-        mySpider = new CSDNSpider(csdnBlogCrawler);
-        mySpider.addUrl(BT_URL).thread(THREAD_NUM).run();
+        csdnSpider = new CSDNSpider(csdnBlogCrawler);
+        csdnSpider.addUrl(BT_URL).thread(THREAD_NUM).run();
     }
 
     //检查是否正在录入
     public boolean isRunning(){
-        if(mySpider==null){
+        if(csdnSpider == null){
             return false;
         }else{
-            return mySpider.ifRunning();
+            return csdnSpider.isRunning();
         }
     }
 
     //停止录入
     public void stopInput(){
         if(isRunning()){
-            mySpider.stop();
+            csdnSpider.stop();
         }
     }
 

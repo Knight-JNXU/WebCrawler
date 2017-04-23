@@ -4,6 +4,7 @@ import code.model.BlogModel;
 import code.model.ShRdModel;
 import code.model.StaticModel;
 import code.utils.CsdnBlogCrawler;
+import code.utils.EmailUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -17,7 +18,7 @@ import java.util.Set;
 @Repository
 public class ManagerDao extends BaseDao {
     @Autowired
-    private EmailDao emailDao;
+    private EmailUtils emailDao;
 
     /**
      * 单条数据插入

@@ -38,26 +38,6 @@
                     <td>${item.num}</td>
                 </tr>
             </c:forEach>
-            <%--<tr>
-                <td>Jill Smith</td>
-                <td>25</td>
-            </tr>
-            <tr>
-                <td>John Stone</td>
-                <td>30</td>
-            </tr>
-            <tr>
-                <td>Jane Strip</td>
-                <td>29</td>
-            </tr>
-            <tr>
-                <td>Gary Mountain</td>
-                <td>21</td>
-            </tr>
-            <tr>
-                <td>James Camera</td>
-                <td>31</td>
-            </tr>--%>
             </tbody>
         </table>
         <script>

@@ -14,7 +14,7 @@ public class CSDNSpider extends Spider {
         return new CSDNSpider(pageProcessor);
     }
     //检查spider是否继续运行
-    public boolean ifRunning() {
+    public boolean isRunning() {
         if(this.stat.get() == 1) {
             return true;
         }else{

@@ -61,7 +61,7 @@ public class ManagerController extends BaseController{
         response.setContentType("text/xml;charset=utf-8");
         response.setHeader("Cache-Control", "no-cache");
         PrintWriter pw=response.getWriter(); //输出中文，这一句一定要放到
-        if(managerService.isRunning()){
+        if(!managerService.isRunning()){
             pw.print("录入停止成功!");
         }else{
             pw.print("录入停止失败!");
