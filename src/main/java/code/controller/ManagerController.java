@@ -1,7 +1,8 @@
 package code.controller;
 
-import code.model.ShRdModel;
 import code.service.ManagerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
-import java.util.List;
 
 /**
  * Created by Knight_JXNU on 2016/12/28.
@@ -21,6 +21,9 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/manag")
 public class ManagerController extends BaseController{
+    private static final Logger LOGGER =
+            LoggerFactory.getLogger(ManagerController.class);
+
     @Autowired
     ManagerService managerService;
 
@@ -31,7 +34,9 @@ public class ManagerController extends BaseController{
 
     @RequestMapping(value = "/input")
     public String input(){
+        LOGGER.info("input blog start!");
         managerService.input();
+        LOGGER.info("input blog stop!");
         return "manager";
     }
 
@@ -68,9 +73,11 @@ public class ManagerController extends BaseController{
                         HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception{
         if(managerService.login(username, password)){
             httpServletRequest.getSession().setAttribute("username", username);
+            LOGGER.info("{} login successful!", username);
             return index();
         }else{
             httpServletResponse.sendRedirect(httpServletRequest.getContextPath()+"/htmls/login.html");
+            LOGGER.info("{} login failed!", username);
             return null;
         }
     }
