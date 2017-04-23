@@ -17,8 +17,7 @@ public class EmailDao extends BaseDao{
     //邮件发送协议
     private final String PROTOCOL = "smtp";
     //from(发送方)的smtp邮件服务器(这个东西可以在sina邮箱设置的客户端pop/imap/smtp中查看)
-//    private final String HOST = "smtp.sina.cn";
-        private final static String HOST = "smtp.163.com";
+    private final static String HOST = "smtp.163.com";
     //smtp邮件服务器默认端口
     private final String PORT = "25";
     //是否要求身份认证
@@ -27,11 +26,8 @@ public class EmailDao extends BaseDao{
     private final String IS_ENABLED_DEBUG_MOD = "true";
     //发件人
     private static final String from = "m18702510536_3@163.com";
-//    private static String from = "18702510536@sina.cn";
     //收件人
-//    private static final String to = "18702510536@sina.cn";
     private final String to = "1990785022@qq.com";
-//    private final String to2 = "m18702510536_3@163.com";
     //初始化连接邮件服务器的会话信息
     private static Properties properties = null;
 
@@ -72,7 +68,6 @@ public class EmailDao extends BaseDao{
             Transport transport = session.getTransport();
             //打开连接
             //如果是网易邮箱，对应的是登录名、授权码
-//            transport.connect("18702510536", "lw231029");
             transport.connect("18702510536", "231029");
             //将message对象传递给transport对象，将邮件发送出去
             transport.sendMessage(message, message.getAllRecipients());
