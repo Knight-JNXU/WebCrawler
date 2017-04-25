@@ -17,7 +17,7 @@
     <script type="text/javascript" src="../js/jquery-2.1.4.js"></script>
 </head>
 <body style="text-align:center">
-<h1>Films Seach Backstage</h1>
+<h1>CSDN Seach Backstage</h1>
 <div style="margin-top: 0%;">
     <input type="button" class="managersubmit" value="录入" onclick="buttonGet('/manag/input')"><br><br>
     <input type="button" class="managersubmit" value="检测" onclick="checkIsRun('/manag/isRunning')"><br><br>
